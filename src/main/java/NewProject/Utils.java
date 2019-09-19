@@ -146,41 +146,46 @@ public class Utils extends BasePage {
 
     }
 
-    public static void gettingTextOfSelectedOptionFromDropdownByvisibleText(By by, String text) {
+    public static String gettingTextOfSelectedOptionFromDropdownByvisibleText(By by, String text) {
         Select select = new Select(driver.findElement(by));
         select.selectByVisibleText(text);
         WebElement option = select.getFirstSelectedOption();
         String selected_option = option.getText();
         System.out.println("Option seleted from dropdown is :  "+selected_option);
+        return selected_option;
 
     }
-    public static void gettingTextOfSelectedOptionFromDropdownByValue(By by, String text) {
+    public static String gettingTextOfSelectedOptionFromDropdownByValue(By by, String text) {
         Select select = new Select(driver.findElement(by));
         select.selectByValue(text);
         WebElement option = select.getFirstSelectedOption();
         String selected_option = option.getText();
         System.out.println("Option seleted from dropdown is :  " + selected_option);
+        return selected_option;
     }
 
 
-    public static void gettingTextOfSelectedOptionFromDropdownByIndexNumber(By by, int index_num) {
+    public static String gettingTextOfSelectedOptionFromDropdownByIndexNumber(By by, int index_num) {
         Select select = new Select(driver.findElement(by));
         select.selectByIndex(index_num);
         WebElement option = select.getFirstSelectedOption();
         String selected_option = option.getText();
         System.out.println("Option seleted from dropdown is :  " + selected_option);
+        return selected_option;
     }
 
-    public static void gettingAttributeofWebElement(By by, String value){
+    public static String gettingAttributeofWebElement(By by, String value){
         WebElement ele = driver.findElement(by);
-        System.out.println("Attribute of the " +value+"  given is : "+ele.getAttribute(value));
-
+        String atrribute = ele.getAttribute(value);
+        System.out.println("Attribute of the " +value+"  given is : "+atrribute);
+        return atrribute;
     }
 
-    public static void getCssPropertyOfWebElement(By by,String text){
+    public static String getCssPropertyOfWebElement(By by,String text){
         WebElement ele = driver.findElement(by);
-        System.out.println("Css value of the  "+text+" is : "+ele.getCssValue(text));
-
+        String cssProperty=ele.getCssValue(text);
+        System.out.println("Css value of the  "+text+" is : "+cssProperty);
+        return cssProperty;
     }
 
     public static void closeDriver(){
