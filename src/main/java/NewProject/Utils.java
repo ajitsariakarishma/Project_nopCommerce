@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.SimpleTimeZone;
 import java.util.concurrent.TimeUnit;
@@ -186,6 +187,55 @@ public class Utils extends BasePage {
         String cssProperty=ele.getCssValue(text);
         System.out.println("Css value of the  "+text+" is : "+cssProperty);
         return cssProperty;
+    }
+
+    //to verify and get the tittle of web page
+    public static String verifytittle() {
+        String tittle = driver.getTitle();
+        System.out.println("Tittle of the active Webpage is:  " + tittle);
+        return tittle;
+
+    }
+
+    //to navigate to any other url
+    public static void toNavigatetoAnotherUrl(String url) {
+
+        driver.navigate().to(url);
+    }
+
+    // to navigate backwards
+    public static void toNavigateBackwards() {
+        driver.navigate().back();
+    }
+
+    //to navigate forward
+    public static void toNavigateForward() {
+        driver.navigate().forward();
+
+    }
+
+    //to refreash webpage
+    public static void toRefreashWebPage() {
+        driver.navigate().refresh();
+    }
+
+    //handling bootstrap dropdown
+    public static String bootStarpDropDown(By by, String text) {
+        List<WebElement> list = driver.findElements(by);
+        String actual = null;
+        for (WebElement element : list) {
+            actual = (element.getText());
+
+
+            if (actual.equals(text)) {
+                element.click();
+                System.out.println("actual text is :" + actual);
+
+                break;
+            }
+
+        }
+        return actual;
     }
 
     public static void closeDriver(){
