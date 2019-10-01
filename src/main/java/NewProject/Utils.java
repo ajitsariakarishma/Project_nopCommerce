@@ -1,14 +1,17 @@
 package NewProject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import sun.awt.windows.WEmbeddedFrame;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -129,21 +132,19 @@ public class Utils extends BasePage {
 
     }
 
-    public static void isElementVisible(By by) {
-        boolean status = driver.findElement(by).isDisplayed();
-        System.out.println("Status of display of the Web Element: " + status);//if false then throws error
+    public static boolean  isElementVisible(By by) {
+        return driver.findElement(by).isDisplayed();
 
     }
 
-    public static void isElementEnabled(By by) {
-        boolean status = driver.findElement(by).isEnabled();
-        System.out.println("Status of Web Element enabled: " + status);//is boolean function returns false if not enabled
+    public static boolean isElementEnabled(By by) {
+        return driver.findElement(by).isEnabled();
 
     }
 
-    public static void isElementSelected(By by) {
-        boolean status = driver.findElement(by).isSelected();
-        System.out.println("Status of Web Element selection: " + status);
+    public static boolean isElementSelected(By by) {
+        return driver.findElement(by).isSelected();
+
 
     }
 
@@ -178,14 +179,14 @@ public class Utils extends BasePage {
     public static String gettingAttributeofWebElement(By by, String value){
         WebElement ele = driver.findElement(by);
         String atrribute = ele.getAttribute(value);
-        System.out.println("Attribute of the " +value+"  given is : "+atrribute);
+        //System.out.println("Attribute of the " +value+"  given is : "+atrribute);
         return atrribute;
     }
 
     public static String getCssPropertyOfWebElement(By by,String text){
         WebElement ele = driver.findElement(by);
         String cssProperty=ele.getCssValue(text);
-        System.out.println("Css value of the  "+text+" is : "+cssProperty);
+        //System.out.println("Css value of the  "+text+" is : "+cssProperty);
         return cssProperty;
     }
 
@@ -242,6 +243,27 @@ public class Utils extends BasePage {
      driver.quit();
     }
 
+     public static boolean isElementPresent(By by){
+             try {
+                 driver.findElement(by);
+                 return true;
+             } catch (org.openqa.selenium.NoSuchElementException e) {
+                 return false;
+             }
+         }
 
-}
+         public static void scrollDown(By by){
+             JavascriptExecutor js = (JavascriptExecutor) driver;
+              js.executeScript("scroll(0,1000)");
+
+
+         }
+
+     }
+
+
+
+
+
+
 
